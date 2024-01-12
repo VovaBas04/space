@@ -1,0 +1,57 @@
+version: '3'
+services:
+    app:
+        build:
+            context: .
+            dockerfile: docker/php-fpm/Dockerfile
+        image: php:7.4-fpm
+        container_name: app
+        restart: unless-stopped
+        tty: true
+        environment:
+            SERVICE_NAME: app
+            SERVICE_TAGS: dev
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+            - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+            - app-network
+    #Nginx Service
+    webserver:
+        image: nginx:alpine
+        container_name: webserver
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8080:80"
+            - "8443:443"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - app-network
+
+    db:
+        image: postgres
+        container_name: db
+        restart: unless-stopped
+        tty: true
+        networks:
+            - app-network
+        ports:
+            - "5433:5432"
+        environment:
+            - POSTGRES_DB=${DB_DATABASE}
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - dbdata:/var/lib/postgres
+            - ./postgres/my.cnf:/etc/postgres/my.cnf
+networks:
+    app-network:
+        driver: bridge
+#Volumes
+volumes:
+    dbdata:
+        driver: local
