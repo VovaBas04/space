@@ -1,16 +1,19 @@
 FROM php:7.4-fpm
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
-# Set working directory
+USER root
+# RUN commands
+
+# Устанавливаем рабочую директорию
 WORKDIR /var/www
-# Install dependencies
+
+# Копируем composer.lock и composer.json
+COPY composer.lock composer.json /var/www/
+
+
+# Устанавливаем зависимости
 RUN apt-get update && apt-get install -y \
     build-essential \
-    libzip-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
-    libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
-    libfreetype6 \
     libfreetype6-dev \
     locales \
     zip \
@@ -18,23 +21,35 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
-# Clear cache
+    curl \
+    libpq-dev \
+    libonig-dev \
+    libzip-dev \
+    libicu-dev \
+    libxslt1-dev
+
+# Очищаем кэш
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-# Install extensions
-RUN docker-php-ext-install mbstring zip exif pcntl
-RUN docker-php-ext-install pdo_pgsql
-# Install composer
+#RUN apt-get update && \
+#    apt-get install -y libxslt1-dev && \
+#    docker-php-ext-install xsl &&
+# Устанавливаем расширения PHP
+RUN docker-php-ext-install pdo_pgsql mbstring zip exif pcntl gd intl xsl 
+
+# Загружаем актуальную версию Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-# Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-# Copy existing application directory contents
+
+# Создаём пользователя и группу www для приложения Laravel
+#RUN groupadd -g 1000 www
+#RUN useradd -u 1000 -ms /bin/bash -g www www
+
+# Копируем содержимое текущего каталога в рабочую директорию
 COPY . /var/www
-# Copy existing application directory permissions
 COPY --chown=www:www . /var/www
-# Change current user to www
+
+# Меняем пользователя на www
 USER www
-# Expose port 9000 and start php-fpm server
+
+# В контейнере открываем 9000 порт и запускаем сервер php-fpm
 EXPOSE 9000
 CMD ["php-fpm"]
