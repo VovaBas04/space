@@ -23,8 +23,7 @@ class InfoResource extends JsonResource
                 'logo'=>$this->provider->logo
             ],
             'firstSend'=>$this->first_send,
-            'area'=>$this->area,
-            'rocket'=>$this->rockets
+            'area'=>$this->area
         ];
     }
 }

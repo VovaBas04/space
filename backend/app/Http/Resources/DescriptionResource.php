@@ -21,10 +21,11 @@ class DescriptionResource extends JsonResource
             'target'=>$this->target,
             'firstSend'=>$this->first_send,
             'aboutPlace'=>$this->about_place,
-            'imagePlace'=>$this->image_place,
+            'imagePlace'=>$this->imagePlaces,
+            'area'=>$this->area,
             'logo'=>$this->logo,
             'provider'=>$this->provider->title,
-            'imageGraph'=>$this->image_graph,
+            'imageGraph'=>$this->imageGraphs,
         ];
     }
 }

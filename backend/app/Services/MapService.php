@@ -9,6 +9,6 @@ class MapService
 {
     public function getMapInfo():Collection
     {
-        return SpacePort::with('provider','rockets')->get();
+        return SpacePort::with('provider')->get();
     }
 }

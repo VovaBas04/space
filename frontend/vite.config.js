@@ -14,6 +14,7 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
+        'images':fileURLToPath(new URL("../backend/storage/app/public/", import.meta.url))
       },
     },
   });

@@ -2,15 +2,23 @@
 export default {
   name:"SpacePort",
   props:['id','x','y','titlePort','countryImage'],
+  data: () => ({
+    width: 0,
+  }),
   computed:{
+    path:function(){
+      return process.env.VUE_APP_BACK_URL + `/storage/${this.countryImage}`
+    }
   }
 }
 </script>
 
 <template>
-  <div :style="{left:x+'%',top:y+'%'}" class="coordinate">
+<!--  <div :style="{left:x+'%',top:y+'%'}" class="coordinate">-->
+    <span :style="{left:x+'px',top:y+'px'}" class="absolute"></span>
+    <div :style="{left:x+'px',top:y+'px'}" class="coordinate">
   <div  class=" max-w-sm p-6 bg-black-500 border border-black rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <img src="../../../public/russia.png" alt="Не найдено" class="max-h-10 mt-2"/>
+    <img :src=path alt="Не найдено" class="max-h-10 mt-2"/>
     <a href="#">
       <h5 class="mb-2 text-2xl  tracking-tight text-white dark:text-white">{{titlePort}}</h5>
     </a>
@@ -26,6 +34,39 @@ export default {
 </template>
 
 <style scoped>
+span {
+  display: block;
+  position: absolute;
+  margin: 0px;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+span:hover::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: red;
+  animation: animate 1.5s infinite normal ease-out;
+}
+
+@keyframes animate {
+  from {
+    transform: scale(0);
+    opacity: .5
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
 img{
   float:left;
 }

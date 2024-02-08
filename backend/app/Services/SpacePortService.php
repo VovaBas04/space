@@ -17,7 +17,7 @@ class SpacePortService
     }
     public function list():Collection
     {
-        return SpacePort::with('provider','country','rockets')->get();
+        return SpacePort::with('provider','country')->get();
     }
     public function store(Collection $files,array $data):SpacePort
     {
