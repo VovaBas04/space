@@ -11,3 +11,9 @@
 
     </script>
 @endsection
+@section('content')
+    @parent
+    @once
+    @include('vendor.voyager.image-graphs.edit-add')
+    @endonce
+@endsection

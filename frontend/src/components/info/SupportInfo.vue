@@ -1,14 +1,15 @@
 <script >
 export default {
   name:"SupportInfo",
-  props:['title']
+  props:['title','description'],
 }
 </script>
 
 <template>
   <div>
   <h3 class="ml-10 text-2xl  underline  font-bold">{{title}}</h3>
-  <p class="inline-grid ml-20 text-2xl">Я саппорт</p>
+  <p class="inline-grid ml-20 text-2xl">{{description}}</p>
+    <p class="inline-grid ml-20 text-2xl"><slot></slot></p>
   </div>
 </template>
 

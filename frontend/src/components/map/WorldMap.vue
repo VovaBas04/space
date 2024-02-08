@@ -23,7 +23,11 @@ export default {
       },)).json()
     },
     info: function (ev) {
-      window.location.href = process.env.VUE_APP_BACK_URL + '/admin/space-ports/create' + '?x=' + Math.round(ev.screenX/window.innerWidth*100) + '&&y=' + Math.round(ev.screenY/window.innerHeight*100);
+      console.log(ev.screenX,ev.screenY,"Скрин")
+      console.log(ev.clientX,ev.clientY,"Клиент")
+      console.log(ev.offsetX,ev.offsetY,"Оффсет")
+      console.log(ev.pageX,ev.pageY,"Пейдж")
+      window.location.href = process.env.VUE_APP_BACK_URL + '/admin/space-ports/create' + '?x=' + Math.round((ev.clientX)) + '&&y=' + Math.round((ev.clientY));
     }
   },
   beforeMount() {
@@ -46,7 +50,7 @@ export default {
                :x="coordinateInfo.coordinate.positionX"
                :y="coordinateInfo.coordinate.positionY"
                :titlePort="coordinateInfo.title"
-               :country="coordinateInfo.country.flag"
+               :country-image="coordinateInfo.country.flag"
                :id="coordinateInfo.id"
     ></SpacePort>
   </BackMap>

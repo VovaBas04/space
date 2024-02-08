@@ -26,8 +26,16 @@ class SpacePort extends Model
     {
         return $this->belongsTo(Provider::class);
     }
-    public function rockets():HasMany
+    public function imageGraphs():HasMany
     {
-        return $this->hasMany(Rocket::class);
+        return $this->hasMany(ImageGraph::class);
+    }
+    public function imagePlaces():HasMany
+    {
+        return $this->hasMany(ImagePlace::class);
+    }
+    public function imageRockets():HasMany
+    {
+        return $this->hasMany(ImageRocket::class);
     }
 }
