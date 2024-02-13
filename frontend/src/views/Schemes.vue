@@ -3,7 +3,7 @@
     <div class="relative slide">
       <div class="flex justify-center content-center items-center pt-12">
 
-        <button type="button" class="relative flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" @click="active = (active != 0 ? ((active - 1) % statistics.length) : statistics.length - 1)">
+        <button type="button" class="relative flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" @click="active = (active != 0 ? ((active - 1) % schemes.length) : schemes.length - 1)">
           <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50  group-active:ring-4 group-active:ring-[#66fcf1]  group-active:outline-none">
             <svg class="w-4 h-4 mr-0.5  bg-transparent" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
               <path stroke="#66fcf1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
