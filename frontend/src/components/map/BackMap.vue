@@ -1,23 +1,33 @@
 <script>
 export default {
-  name: "BackMap"
-}
+  name: "BackMap",
+};
 </script>
 
 <template>
   <div class="rel">
-    <img src="../../../public/materik-karta-mira-metall-chernyi-fon.jpg" class="my-size"
-         alt="Картинка не найдена">
+    <img
+      src="/materik-karta-mira-metall-chernyi-fon.jpg"
+      class="my-size"
+      id="img-map"
+      alt="Картинка не найдена"
+    />
     <slot></slot>
   </div>
 </template>
 
 <style scoped>
-.rel{
+.rel {
   position: relative;
+  height: 100vh;
+  /*background-attachment: scroll;*/
+  overflow: scroll;
+  /*background-size: cover;*/
+  /*width: 100vw;*/
 }
-.my-size{
-  max-width: 3400px;
-  height: 1800px;
+#img-map {
+  margin: auto;
+  height: 100vh;
+  max-width: max-content;
 }
 </style>
