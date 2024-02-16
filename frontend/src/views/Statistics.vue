@@ -73,10 +73,10 @@ export default {
     navNames: [{ name: "Map", text: "Карты" }],
   }),
   beforeMount() {
-    //this.getStatistics(this.$route.params.id).then((data) => {
-    //  this.statistics = data;
-    //  console.log(this.images);
-    //});
+    this.getStatistics(this.$route.params.id).then((data) => {
+     this.statistics = data;
+     console.log(this.images);
+    });
   },
   methods: {
     getStatistics: async (id) => {

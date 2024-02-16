@@ -73,10 +73,10 @@ export default {
     navNames: [{ name: "Map", text: "Карты" }],
   }),
   beforeMount() {
-    //this.getRockets(this.$route.params.id).then((data) => {
-    //  this.rockets = data;
-    //  console.log(this.images);
-    //});
+    this.getRockets(this.$route.params.id).then((data) => {
+     this.rockets = data;
+     console.log(this.images);
+    });
   },
   methods: {
     getRockets: async (id) => {

@@ -73,10 +73,10 @@ export default {
     navNames: [{ name: "Map", text: "Карты" }],
   }),
   beforeMount() {
-    //this.getSchemes(this.$route.params.id).then((data) => {
-    //  this.schemes = data;
-    //  console.log(this.images);
-    //});
+    this.getSchemes(this.$route.params.id).then((data) => {
+     this.schemes = data;
+     console.log(this.images);
+    });
   },
   methods: {
     getSchemes: async (id) => {

@@ -24,3 +24,6 @@ Route::prefix('/space-port')->group(function (){
 //    Route::apiResource('/','SpacePortController');
 });
 Route::apiResource('/space-port','SpacePortController');
+Route::controller(ImageController::class)->group(function (){
+    Route::get('/{type}/{spacePort}','getImage');
+});

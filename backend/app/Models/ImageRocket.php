@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ImageRocket extends Model
 {
     use HasFactory;
-    protected $hidden=['id','updated_at'];
+
+    protected $hidden=['updated_at'];
     protected $guarded=['id'];
     public function spacePort():BelongsTo
     {
