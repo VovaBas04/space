@@ -15,17 +15,20 @@ class DescriptionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
-            'title'=>$this->title,
-            'description'=>$this->description,
-            'target'=>$this->target,
-            'firstSend'=>$this->first_send,
-            'aboutPlace'=>$this->about_place,
-            'imagePlace'=>$this->imagePlaces,
-            'area'=>$this->area,
-            'logo'=>$this->logo,
-            'provider'=>$this->provider->title,
-            'imageGraph'=>$this->imageGraphs,
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'target' => $this->target,
+            'firstSend' => $this->first_send,
+            'aboutPlace' => $this->about_place,
+            'imagePlace' => $this->imagePlaces[0]->image,
+            'area' => $this->area,
+            'logo' => $this->logo,
+            'provider' => $this->provider->title,
+            'aboutHistory' => $this->about_history_country,
+            'otherInfo' => $this->other_info,
+            'createPort' => $this->create_port,
+            'presentState' => $this->present_state
         ];
     }
 }

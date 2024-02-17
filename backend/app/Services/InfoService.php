@@ -12,6 +12,6 @@ class InfoService
     }
     public function getBigInfo(SpacePort $spacePort)
     {
-        return SpacePort::with('imageGraphs','imagePlaces','imageRockets')->find($spacePort->id);
+        return SpacePort::with('imagePlaces','provider')->find($spacePort->id);
     }
 }
