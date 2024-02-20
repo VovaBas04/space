@@ -5,29 +5,35 @@ export default {
 </script>
 
 <template>
-  <div class="rel">
-    <img
-      src="/materik-karta-mira-metall-chernyi-fon.jpg"
-      class="my-size"
-      id="img-map"
-      alt="Картинка не найдена"
-    />
-    <slot></slot>
+  <div class="jki">
+    <div class="rel" id="element">
+      <img
+        src="/materik-karta-mira-metall-chernyi-fon.jpg"
+        class="my-size"
+        id="img-map"
+        alt="Картинка не найдена"
+      />
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .rel {
   position: relative;
+  /*width: 100%;*/
+  overflow-y: hidden;
+}
+.jki {
+  margin: 0 auto;
+  width: fit-content;
   height: 100vh;
-  /*background-attachment: scroll;*/
-  overflow: scroll;
-  /*background-size: cover;*/
-  /*width: 100vw;*/
+  overflow-y: hidden;
 }
 #img-map {
-  margin: auto;
+  /*margin: auto;*/
   height: 100vh;
   max-width: max-content;
+  overflow: hidden;
 }
 </style>

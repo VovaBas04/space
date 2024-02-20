@@ -6,12 +6,16 @@ export default {
 </script>
 
 <template>
-  <img
-    class="float-left xl:ml-44 max-ml-44 max-h-44"
-    :src="pathFlag"
-    alt="ршщау"
-  />
+  <img class="logo h-24" :src="pathFlag" alt="logo" />
 </template>
 
 <style scoped>
+.logo {
+  margin: auto 0;
+}
+@media (max-width: 900px) {
+  .logo {
+    margin: auto;
+  }
+}
 </style>
