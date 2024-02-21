@@ -13,10 +13,10 @@
         </button>
 
 
-        <div class="carousel-inner relative overflow-hidden max-w-7xl  flex place-items-center">
+        <div class="carousel-inner image-container relative overflow-hidden max-w-7xl min-h-2xl flex place-items-center">
 
           <div v-for="(obj, i) in rockets" :id="`slide-${i}`" :key="i" :class="`${active === i ? 'active' : 'left-full'}`" class="flex items-center self-center carousel-item  relative w-full transform transition-all duration-500 ease-in-out ">
-            <img class="m-auto" :src="obj.image" alt="First slide" />
+            <img class="carousel-image m-auto" :src="obj.image" alt="First slide" />
    
           </div>
 
@@ -94,7 +94,16 @@ export default {
   display: block;
   width: 100%;
   margin-right: -100%;
+  min-height: inherit;
   backface-visibility: hidden;
+}
+.carousel-inner {
+  min-width: 70vw;
+  min-height: 70vh;
+}
+.carousel-image {
+  object-fit: contain;
+  min-height: inherit;
 }
 .marg {
   margin: 50px 100px;

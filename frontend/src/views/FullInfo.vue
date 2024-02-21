@@ -38,6 +38,9 @@ export default {
         )
       ).json();
       this.$store.commit("setDescription", data);
+      console.log(
+        "http://localhost:8000/storage/" + this.description.imagePlace
+      );
     },
   },
   beforeMount() {
@@ -61,17 +64,20 @@ export default {
         class="header grid gap-5 grid-rows-auto grid-cols-[1fr_2fr_1fr] border-b border-[#66fcf1]"
       >
         <Logo :path-flag="path" class="justify-self-end" />
-        <h1 class="text-6xl font-bold textxt justify-self-center">
+        <h1 class="font-bold textxt justify-self-center">
           Космодром {{ this.description.title }}
         </h1>
         <div></div>
       </div>
 
       <div
-        class="description indent-20 grid justify-items-space-between grid-flow-row grid-cols-2 gap-10 marg"
+        class="description indent-20 grid justify-items-space-between grid grid-cols-2 grid-flow-col gap-10 marg"
       >
-        <Description />
-        <img :src="schemes[0].image" class="img" />
+        <Description class="description-text" />
+        <img
+          :src="'http://localhost:8000/storage/' + this.description.imagePlace"
+          class="description-img"
+        />
       </div>
 
       <div class="supportInfo indent-20">
@@ -118,17 +124,14 @@ export default {
 .fullInfo {
   max-width: 100vw;
   /*background-color: black;*/
-  /*height: 100vh;*/
+  min-height: 100vh;
   /*padding: 30px;*/
 }
 .supportInfo {
   margin: 0 100px;
   overflow-wrap: break-word;
 }
-.img {
-  /*min-height: 30vh;*/
-  /*max-height: 40vh;*/
-}
+
 .description {
   /*grid-auto-columns: 150px;*/
   margin: 0 100px;
@@ -141,6 +144,8 @@ export default {
 .header {
   padding: 30px 100px;
   position: relative;
+  font-size: 3.75rem; /* 60px */
+  line-height: 1;
 }
 .textxt {
   margin: auto;
@@ -149,11 +154,34 @@ export default {
 @media (max-width: 900px) {
   .header {
     display: block;
+    font-size: 2em;
+  }
+  .description,
+  .supportInfo {
+    text-indent: 2rem;
+    font-size: 0.25em;
   }
 }
 @media (max-width: 1200px) {
   .description {
-    display: block;
+    /*grid-template-rows: fit-content, minmax(0, 1fr);*/
+    grid-template-columns: 1fr;
+    word-wrap: break-word;
+  }
+  .description-text {
+    grid-column-end: 2;
+    grid-row-start: 1;
+  }
+  .description-img {
+    width: 100%;
+    grid-column-end: 2;
+    grid-row-start: 2;
+  }
+}
+@media (min-width: 1200px) {
+  .description-img {
+    object-fit: contain;
+    min-width: 70%;
   }
 }
 </style>

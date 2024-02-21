@@ -16,7 +16,7 @@ export default {
 
 <template>
   <div class="desc text-2xl">
-    <div v-html="description.description"></div>
+    <div v-html="description.description" class="inner-description"></div>
 
     <!--<figure class="col-span-2 row-span-3">-->
     <!--    <img class= "w-full" src="../../../public/materik-karta-mira-metall-chernyi-fon.jpg" alt="few"/>-->
@@ -42,5 +42,10 @@ export default {
 <style scoped>
 .desc {
   padding-bottom: 15px;
+  text-overflow: clip;
+}
+.inner-description {
+  word-wrap: break-word;
+  word-break: break-all;
 }
 </style>
