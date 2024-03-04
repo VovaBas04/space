@@ -15,25 +15,37 @@ export default {
 </script>
 
 <template>
-  <div class="text-2xl">
-    <p class="">
-      {{ description.description }}
-    </p>
+  <div class="desc text-2xl">
+    <div v-html="description.description" class="inner-description"></div>
+
     <!--<figure class="col-span-2 row-span-3">-->
     <!--    <img class= "w-full" src="../../../public/materik-karta-mira-metall-chernyi-fon.jpg" alt="few"/>-->
     <!--<img class= "w-full" :src=path alt="few"/>
       <figcaption><a  :href=path>Карта местоположения</a> </figcaption>
     </figure>-->
     <p class="">
-      Год начала эсплуатации:<span class="m-auto">{{
-        description.firstSend
-      }}</span>
+      Страна: <span class="m-auto">{{ description.firstSend }}</span>
     </p>
     <p class="">
-      Пользователи:<span class="m-auto">{{ description.provider }}</span>
+      Год основания: <span class="m-auto">{{ description.createPort }}</span>
+    </p>
+    <p class="">
+      Год начала эсплуатации:
+      <span class="m-auto">{{ description.firstSend }}</span>
+    </p>
+    <p class="">
+      Пользователи: <span class="m-auto">{{ description.provider }}</span>
     </p>
   </div>
 </template>
 
 <style scoped>
+.desc {
+  padding-bottom: 15px;
+  text-overflow: clip;
+}
+.inner-description {
+  word-wrap: break-word;
+  word-break: break-all;
+}
 </style>

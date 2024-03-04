@@ -21,7 +21,7 @@ class DescriptionResource extends JsonResource
             'target' => $this->target,
             'firstSend' => $this->first_send,
             'aboutPlace' => $this->about_place,
-            'imagePlace' => $this->imagePlaces[0]->image,
+            'imagePlace' => empty($this->imagePlaces->toArray())?null:$this->imagePlaces[0]->image,
             'area' => $this->area,
             'logo' => $this->logo,
             'provider' => $this->provider->title,

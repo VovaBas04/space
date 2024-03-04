@@ -13,11 +13,11 @@
         </button>
 
 
-        <div class="carousel-inner relative overflow-hidden max-w-4xl  flex place-items-center">
+        <div class="carousel-inner relative overflow-hidden max-w-7xl  flex place-items-center">
 
           <div v-for="(obj, i) in statistics" :id="`slide-${i}`" :key="i" :class="`${active === i ? 'active' : (((active + 1) % statistics.length) == i ? 'right-full' : 'left-full')}`" class="flex items-center self-center carousel-item  relative w-full transform transition-all duration-500 ease-in-out ">
-            <img class="m-auto" :src="obj.image" alt="First slide" />
-            <figcaption class="text-center p-4"> {{obj.caption}} </figcaption>
+            <img class="carousel-image m-auto" :src="obj.image" alt="First slide" />
+          
           </div>
 
         </div>
@@ -44,6 +44,10 @@
         </ol>
       </div>
 
+      <div v-for="obj, i in statistics" :id="`caption-${i}`" :key="i+10" :class="`${active === i ? 'active' : 'left-full'}`" class="marg text-2xl indent-20" >
+        <div v-if="i == active"> {{obj.caption}}</div>
+      </div>
+
     </div>
     <ButtonGroup :routes="navNames" class="relative bottom-0"/>
   </div>
@@ -55,27 +59,13 @@ import ButtonGroup from "@/components/ButtonGroup.vue";
 export default {
   components: { ButtonGroup },
   data: () => ({
-    statistics: [
-      {
-        image: "/scheme.jpg",
-        caption: "какое то описание",
-      },
-      {
-        image: "/rockets.jpg",
-        caption: "какое то описание",
-      },
-      {
-        image: "/statistics.jpg",
-        caption: "какое то описание",
-      },
-    ],
+    statistics: [],
     active: 0,
     navNames: [{ name: "Map", text: "Карты" }],
   }),
   beforeMount() {
     this.getStatistics(this.$route.params.id).then((data) => {
-     this.statistics = data;
-     console.log(this.images);
+      this.statistics = data;
     });
   },
   methods: {
@@ -102,8 +92,20 @@ export default {
 .carousel-item {
   position: relative;
   display: block;
+  min-height: inherit;
   width: 100%;
   margin-right: -100%;
   backface-visibility: hidden;
+}
+.carousel-inner {
+  min-width: 70vw;
+  min-height: 70vh;
+}
+.carousel-image {
+  object-fit: contain;
+  min-height: inherit;
+}
+.marg {
+  margin: 50px 100px;
 }
 </style>

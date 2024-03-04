@@ -13,11 +13,11 @@
         </button>
 
 
-        <div class="carousel-inner relative overflow-hidden max-w-4xl  flex place-items-center">
+        <div class="carousel-inner relative overflow-hidden max-w-7xl  flex place-items-center">
 
           <div v-for="(obj, i) in schemes" :id="`slide-${i}`" :key="i" :class="`${active === i ? 'active' : 'left-full'}`" class="flex items-center self-center carousel-item  relative w-full transform transition-all duration-500 ease-in-out ">
-            <img class="m-auto" :src="obj.image" alt="First slide" />
-            <figcaption class="text-center p-4"> {{obj.caption}} </figcaption>
+            <img class="carousel-image m-auto" :src="obj.image" alt="First slide" />
+          
           </div>
 
         </div>
@@ -32,6 +32,8 @@
         </button>
       </div>
 
+      
+
       <div class="carousel-indicators flex bg-transparent h-12 w-full justify-center items-center">
         <ol class="flex space-x-4">
           <li 
@@ -40,9 +42,14 @@
           class="w-4 h-4 border border-[#66fcf1] rounded-full cursor-pointer" 
           :class="`${i == active ? 'bg-[#66fcf1]' : ''} `"
           @click="active = i">
+          
           </li>
         </ol>
       </div>
+
+      <div v-for="obj, i in schemes" :id="`caption-${i}`" :key="i+10" :class="`${active === i ? 'active' : 'left-full'}`" class="marg text-2xl indent-20" >
+        <div v-if="i == active"> {{obj.caption}}</div>
+          </div>
 
     </div>
     <ButtonGroup :routes="navNames" class="relative bottom-0"/>
@@ -55,31 +62,19 @@ import ButtonGroup from "@/components/ButtonGroup.vue";
 export default {
   components: { ButtonGroup },
   data: () => ({
-    schemes: [
-      {
-        image: "/scheme.jpg",
-        caption: "какое то описание",
-      },
-      {
-        image: "/rockets.jpg",
-        caption: "какое то описание",
-      },
-      {
-        image: "/statistics.jpg",
-        caption: "какое то описание",
-      },
-    ],
+    schemes: [],
     active: 0,
     navNames: [{ name: "Map", text: "Карты" }],
   }),
   beforeMount() {
     this.getSchemes(this.$route.params.id).then((data) => {
-     this.schemes = data;
-     console.log(this.images);
+      this.schemes = data;
+      //console.log(this.schemes.value);
     });
   },
   methods: {
     getSchemes: async (id) => {
+      console.log(id);
       return (
         await fetch(process.env.VUE_APP_BACK_URL + "/api/v1/schemes/" + id, {
           mode: "cors",
@@ -103,7 +98,19 @@ export default {
   position: relative;
   display: block;
   width: 100%;
+  min-height: inherit;
   margin-right: -100%;
   backface-visibility: hidden;
+}
+.carousel-inner {
+  min-width: 70vw;
+  min-height: 70vh;
+}
+.carousel-image {
+  object-fit: contain;
+  min-height: inherit;
+}
+.marg {
+  margin: 50px 100px;
 }
 </style>
