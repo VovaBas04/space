@@ -15,7 +15,7 @@
 
         <div class="carousel-inner relative overflow-hidden max-w-7xl  flex place-items-center">
 
-          <div v-for="(obj, i) in statistics" :id="`slide-${i}`" :key="i" :class="`${active === i ? 'active' : (((active + 1) % statistics.length) == i ? 'right-full' : 'left-full')}`" class="flex items-center self-center carousel-item  relative w-full transform transition-all duration-500 ease-in-out ">
+         <div v-for="(obj, i) in statistics" :id="`slide-${i}`" :key="i" :class="`${active === i ? 'active' : 'left-full'}`" class="flex items-center self-center carousel-item relative w-full transform transition-all duration-500 ease-in-out ">
             <img class="carousel-image m-auto" :src="obj.image" alt="First slide" />
           
           </div>

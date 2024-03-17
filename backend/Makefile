@@ -1,22 +1,17 @@
-composer:
-	@docker-compose exec php-fpm composer install --no-interaction
-
 configure:
 	@docker-compose exec app php artisan migrate
 
 up:
 	@docker-compose up -d
-	@make -s composer
-	@make -s configure
+	@docker-compose exec app php artisan storage:link
+	@make -s load
 
-build-up:
-	@docker-compose up -d --build
-	@make -s composer
-	@make -s configure
-dump:
-	@docker-compose exec db createuser  vova
-	@docker-compose exec db createdb -U postgres space
-	@docker-compose exec db pg_restore -U postgres -d space dump/space.sql -x
+load:
+	@docker-compose exec db psql -U name space -f ./backup/space.pgsql
+
+save:
+	@docker-compose exec db pg_dump -U name space > ./backup/space.pgsql
+
 down:
 	@docker-compose down
 
