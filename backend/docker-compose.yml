@@ -1,10 +1,11 @@
 version: '3'
 services:
     app:
+        image: space-api-php-server:latest
         build:
             context: .
-            dockerfile: docker/php-fpm/Dockerfile
-        image: php:7.4-fpm
+            dockerfile: './docker/php-fpm/Dockerfile'
+
         container_name: app
         restart: unless-stopped
         tty: true
@@ -33,7 +34,7 @@ services:
             - app-network
 
     db:
-        image: postgres
+        image: postgres:16-alpine
         container_name: db
         restart: unless-stopped
         tty: true
@@ -48,6 +49,7 @@ services:
         volumes:
             - dbdata:/var/lib/postgres
             - ./postgres/my.cnf:/etc/postgres/my.cnf
+            - ./backup:/backup
 networks:
     app-network:
         driver: bridge

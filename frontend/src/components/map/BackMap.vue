@@ -8,7 +8,7 @@ export default {
   <div class="jki">
     <div class="rel" id="element">
       <img
-        src="/materik-karta-mira-metall-chernyi-fon.jpg"
+        src=/storage/materik-karta-mira-metall-chernyi-fon.jpg
         class="my-size"
         id="img-map"
         alt="Картинка не найдена"
